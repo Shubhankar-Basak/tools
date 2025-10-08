@@ -168,6 +168,7 @@
         .btn-large {
             padding: 15px 30px;
             font-size: 1.1rem;
+            text-decoration: none !important;
         }
 
         .tools-section {
@@ -670,6 +671,20 @@
                 grid-template-columns: 1fr;
             }
         }
+                /* Tool Images */
+        .tool-image {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .featured-tool-icon .tool-image {
+            width: 40px;
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+    </style>
     </style>
 </head>
 <body>
@@ -964,191 +979,191 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Tool data - UPDATED WITH ACTUAL FILE LINKS
-            const tools = [
-                {
-                    id: 'qr-code',
-                    name: 'QR Code Generator',
-                    description: 'Create custom QR codes for URLs, text, contact info, and more.',
-                    icon: '🔲',
-                    tags: ['QR Code', 'Generator', 'Free'],
-                    uses: '125K',
-                    rating: '4.8',
-                    featured: true,
-                    file: 'qr-code.html' // ACTUAL FILE
-                },
-                {
-                    id: 'currency-converter',
-                    name: 'Currency Converter',
-                    description: 'Convert between 150+ currencies with real-time exchange rates.',
-                    icon: '💱',
-                    tags: ['Currency', 'Converter', 'Finance'],
-                    uses: '98K',
-                    rating: '4.7',
-                    featured: true,
-                    file: 'currency-convert.html' // ACTUAL FILE
-                },
-                {
-                    id: 'age-calculator',
-                    name: 'Age Calculator',
-                    description: 'Calculate your exact age in years, months, weeks, days, and more.',
-                    icon: '🎂',
-                    tags: ['Age', 'Calculator', 'Birthday'],
-                    uses: '76K',
-                    rating: '4.6',
-                    featured: true,
-                    file: 'age-calculator.html' // ACTUAL FILE
-                },
-                {
-                    id: 'image-compressor',
-                    name: 'Image Compressor',
-                    description: 'Reduce image file size while maintaining quality.',
-                    icon: '🖼️',
-                    tags: ['Image', 'Compressor', 'Optimize'],
-                    uses: '64K',
-                    rating: '4.5',
-                    file: 'img-compressor.html' // ACTUAL FILE
-                },
-                {
-                    id: 'image-resizer',
-                    name: 'Image Resizer',
-                    description: 'Resize images to any dimension while maintaining quality.',
-                    icon: '📐',
-                    tags: ['Image', 'Resizer', 'Dimensions'],
-                    uses: '52K',
-                    rating: '4.4',
-                    file: 'img-resizer.html' // ACTUAL FILE
-                },
-                {
-                    id: 'image-cropper',
-                    name: 'Image Cropper',
-                    description: 'Crop images to any size or aspect ratio.',
-                    icon: '✂️',
-                    tags: ['Image', 'Cropper', 'Crop'],
-                    uses: '48K',
-                    rating: '4.4',
-                    file: 'img-crop.html' // ACTUAL FILE
-                }
-            ];
-
-            // DOM Elements
-            const toolsGrid = document.getElementById('toolsGrid');
-            const featuredSlider = document.getElementById('featuredSlider');
-            const toolSearch = document.getElementById('toolSearch');
-            const faqQuestions = document.querySelectorAll('.faq-question');
-
-            // Initialize the page
-            function initPage() {
-                renderTools();
-                renderFeaturedTools();
-                setupEventListeners();
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tool data - UPDATED WITH IMAGES
+        const tools = [
+            {
+                id: 'qr-code',
+                name: 'QR Code Generator',
+                description: 'Create custom QR codes for URLs, text, contact info, and more.',
+                icon: '<img src="https://cdn-icons-png.flaticon.com/128/4299/4299774.png" alt="QR Code Generator" class="tool-image">',
+                tags: ['QR Code', 'Generator', 'Free'],
+                uses: '125K',
+                rating: '4.8',
+                featured: true,
+                file: 'qr-code.html'
+            },
+            {
+                id: 'currency-converter',
+                name: 'Currency Converter',
+                description: 'Convert between 150+ currencies with real-time exchange rates.',
+                icon: '<img src="https://cdn-icons-png.flaticon.com/128/71/71123.png" alt="Currency Converter" class="tool-image">',
+                tags: ['Currency', 'Converter', 'Finance'],
+                uses: '98K',
+                rating: '4.7',
+                featured: true,
+                file: 'currency-convert.html'
+            },
+            {
+                id: 'age-calculator',
+                name: 'Age Calculator',
+                description: 'Calculate your exact age in years, months, weeks, days, and more.',
+                icon: '<img src="https://cdn-icons-png.flaticon.com/128/5670/5670747.png" alt="Age Calculator" class="tool-image">',
+                tags: ['Age', 'Calculator', 'Birthday'],
+                uses: '76K',
+                rating: '4.6',
+                featured: true,
+                file: 'age-calculator.html'
+            },
+            {
+                id: 'image-compressor',
+                name: 'Image Compressor',
+                description: 'Reduce image file size while maintaining quality.',
+                icon: '<img src="https://cdn-icons-png.flaticon.com/128/10900/10900537.png" alt="Image Compressor" class="tool-image">',
+                tags: ['Image', 'Compressor', 'Optimize'],
+                uses: '64K',
+                rating: '4.5',
+                file: 'img-compressor.html'
+            },
+            {
+                id: 'image-resizer',
+                name: 'Image Resizer',
+                description: 'Resize images to any dimension while maintaining quality.',
+                icon: '<img src="https://cdn-icons-png.flaticon.com/128/18036/18036424.png" alt="Image Resizer" class="tool-image">',
+                tags: ['Image', 'Resizer', 'Dimensions'],
+                uses: '52K',
+                rating: '4.4',
+                file: 'img-resizer.html'
+            },
+            {
+                id: 'image-cropper',
+                name: 'Image Cropper',
+                description: 'Crop images to any size or aspect ratio.',
+                icon: '<img src="https://cdn-icons-png.flaticon.com/128/9314/9314215.png" alt="Image Cropper" class="tool-image">',
+                tags: ['Image', 'Cropper', 'Crop'],
+                uses: '48K',
+                rating: '4.4',
+                file: 'img-crop.html'
             }
+        ];
 
-            // Render all tools
-            function renderTools() {
-                toolsGrid.innerHTML = '';
+        // DOM Elements
+        const toolsGrid = document.getElementById('toolsGrid');
+        const featuredSlider = document.getElementById('featuredSlider');
+        const toolSearch = document.getElementById('toolSearch');
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        // Initialize the page
+        function initPage() {
+            renderTools();
+            renderFeaturedTools();
+            setupEventListeners();
+        }
+
+        // Render all tools
+        function renderTools() {
+            toolsGrid.innerHTML = '';
+            
+            tools.forEach(tool => {
+                const toolCard = document.createElement('a');
+                toolCard.className = 'tool-card';
+                toolCard.href = tool.file;
                 
-                tools.forEach(tool => {
-                    const toolCard = document.createElement('a');
-                    toolCard.className = 'tool-card';
-                    toolCard.href = tool.file;
-                    
-                    toolCard.innerHTML = `
-                        <div class="tool-icon">${tool.icon}</div>
-                        <div class="tool-content">
-                            <h3>${tool.name}</h3>
-                            <p>${tool.description}</p>
-                            <div class="tool-tags">
-                                ${tool.tags.map(tag => `<span class="tool-tag">${tag}</span>`).join('')}
+                toolCard.innerHTML = `
+                    <div class="tool-icon">${tool.icon}</div>
+                    <div class="tool-content">
+                        <h3>${tool.name}</h3>
+                        <p>${tool.description}</p>
+                        <div class="tool-tags">
+                            ${tool.tags.map(tag => `<span class="tool-tag">${tag}</span>`).join('')}
+                        </div>
+                        <div class="tool-stats">
+                            <div class="tool-stat">
+                                <i class="fas fa-users"></i>
+                                <span>${tool.uses}+ uses</span>
                             </div>
-                            <div class="tool-stats">
-                                <div class="tool-stat">
-                                    <i class="fas fa-users"></i>
-                                    <span>${tool.uses}+ uses</span>
-                                </div>
-                                <div class="tool-stat">
-                                    <i class="fas fa-star"></i>
-                                    <span>${tool.rating}</span>
-                                </div>
+                            <div class="tool-stat">
+                                <i class="fas fa-star"></i>
+                                <span>${tool.rating}</span>
                             </div>
                         </div>
-                    `;
-                    
-                    toolsGrid.appendChild(toolCard);
-                });
-            }
-
-            // Render featured tools
-            function renderFeaturedTools() {
-                featuredSlider.innerHTML = '';
+                    </div>
+                `;
                 
-                const featuredTools = tools.filter(tool => tool.featured);
+                toolsGrid.appendChild(toolCard);
+            });
+        }
+
+        // Render featured tools
+        function renderFeaturedTools() {
+            featuredSlider.innerHTML = '';
+            
+            const featuredTools = tools.filter(tool => tool.featured);
+            
+            featuredTools.forEach(tool => {
+                const featuredTool = document.createElement('a');
+                featuredTool.className = 'featured-tool';
+                featuredTool.href = tool.file;
                 
-                featuredTools.forEach(tool => {
-                    const featuredTool = document.createElement('a');
-                    featuredTool.className = 'featured-tool';
-                    featuredTool.href = tool.file;
-                    
-                    featuredTool.innerHTML = `
-                        <div class="featured-tool-icon">${tool.icon}</div>
-                        <div class="featured-tool-content">
-                            <h3>${tool.name}</h3>
-                            <p>${tool.description}</p>
-                        </div>
-                    `;
-                    
-                    featuredSlider.appendChild(featuredTool);
-                });
-            }
+                featuredTool.innerHTML = `
+                    <div class="featured-tool-icon">${tool.icon}</div>
+                    <div class="featured-tool-content">
+                        <h3>${tool.name}</h3>
+                        <p>${tool.description}</p>
+                    </div>
+                `;
+                
+                featuredSlider.appendChild(featuredTool);
+            });
+        }
 
-            // Setup event listeners
-            function setupEventListeners() {
-                // Search functionality
-                toolSearch.addEventListener('input', function() {
-                    const searchTerm = this.value.toLowerCase();
+        // Setup event listeners
+        function setupEventListeners() {
+            // Search functionality
+            toolSearch.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                document.querySelectorAll('.tool-card').forEach(card => {
+                    const toolName = card.querySelector('h3').textContent.toLowerCase();
+                    const toolDesc = card.querySelector('p').textContent.toLowerCase();
                     
-                    document.querySelectorAll('.tool-card').forEach(card => {
-                        const toolName = card.querySelector('h3').textContent.toLowerCase();
-                        const toolDesc = card.querySelector('p').textContent.toLowerCase();
-                        
-                        if (toolName.includes(searchTerm) || toolDesc.includes(searchTerm)) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
+                    if (toolName.includes(searchTerm) || toolDesc.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+
+            // FAQ accordion
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const isActive = answer.classList.contains('active');
+                    
+                    // Close all answers
+                    document.querySelectorAll('.faq-answer').forEach(ans => {
+                        ans.classList.remove('active');
                     });
+                    
+                    // Open current answer if it wasn't active
+                    if (!isActive) {
+                        answer.classList.add('active');
+                    }
                 });
+            });
 
-                // FAQ accordion
-                faqQuestions.forEach(question => {
-                    question.addEventListener('click', function() {
-                        const answer = this.nextElementSibling;
-                        const isActive = answer.classList.contains('active');
-                        
-                        // Close all answers
-                        document.querySelectorAll('.faq-answer').forEach(ans => {
-                            ans.classList.remove('active');
-                        });
-                        
-                        // Open current answer if it wasn't active
-                        if (!isActive) {
-                            answer.classList.add('active');
-                        }
-                    });
-                });
+            // Newsletter form
+            document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for subscribing to our newsletter!');
+                this.reset();
+            });
+        }
 
-                // Newsletter form
-                document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    alert('Thank you for subscribing to our newsletter!');
-                    this.reset();
-                });
-            }
-
-            // Initialize the page
-            initPage();
-        });
-    </script>
+        // Initialize the page
+        initPage();
+    });
+</script>
 </body>
 </html>
