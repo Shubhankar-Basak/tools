@@ -429,16 +429,17 @@
         }
 
         .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+}
+
+/* Remove the old avatar style */
+.author-avatar:not(img) {
+    display: none;
+}
 
         .author-info h4 {
             margin-bottom: 5px;
@@ -688,9 +689,6 @@
                         <li><a href="#faq">FAQ</a></li>
                     </ul>
                 </nav>
-                <button class="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
-                </button>
             </div>
         </div>
     </header>
@@ -800,7 +798,7 @@
                         "The QR code generator saved me so much time for my business cards. Simple and effective!"
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-avatar">JD</div>
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" alt="John Doe" class="author-avatar">
                         <div class="author-info">
                             <h4>John Doe</h4>
                             <p>Small Business Owner</p>
@@ -813,7 +811,7 @@
                         "As a frequent traveler, the currency converter is my go-to tool. Accurate and up-to-date rates!"
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-avatar">SJ</div>
+                       <img src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=150&h=150&fit=crop&crop=face" alt="Sarah Johnson" class="author-avatar">
                         <div class="author-info">
                             <h4>Sarah Johnson</h4>
                             <p>Digital Nomad</p>
@@ -822,11 +820,24 @@
                 </div>
                 
                 <div class="testimonial-card">
+                     <div class="testimonial-text">
+                         "The image tools are incredibly fast and easy to use. Compressed my product images without losing quality!"
+                      </div>
+                      <div class="testimonial-author">
+                         <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face" alt="Mike Kennedy" class="author-avatar">
+                         <div class="author-info">
+                             <h4>Mike Kennedy</h4>
+                             <p>E-commerce Store Owner</p>
+                         </div>
+                     </div>
+                 </div>
+                 
+                <div class="testimonial-card">
                     <div class="testimonial-text">
                         "The age calculator helped me plan my retirement perfectly. So many useful details in one tool!"
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-avatar">RB</div>
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Robert Brown" class="author-avatar">
                         <div class="author-info">
                             <h4>Robert Brown</h4>
                             <p>Retirement Planner</p>
