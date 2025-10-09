@@ -301,14 +301,32 @@
         }
 
         .ad-unit.horizontal {
-            width: 100%;
-            max-width: 728px;
-        }
+    width: 100%;
+    max-width: 728px;
+    height: 90px;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9fafb;
+    border: 1px dashed #d1d5db;
+    border-radius: var(--border-radius);
+    margin: 0 auto;
+}
 
-        .ad-unit.vertical {
-            width: 100%;
-            max-width: 300px;
-        }
+.ad-unit.vertical {
+    width: 100%;
+    max-width: 468px;
+    height: 60px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9fafb;
+    border: 1px dashed #d1d5db;
+    border-radius: var(--border-radius);
+    margin: 0 auto;
+}
 
         .features {
             padding: 60px 0;
