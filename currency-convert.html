@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Free online currency converter tool. Convert between 150+ currencies with real-time exchange rates. Fast, accurate, and easy to use.">
     <meta name="keywords" content="currency converter, exchange rates, money converter, forex, currency calculator">
-    <title>CurrencyPro - Free Online Currency Converter</title>
+    <title>Currency Converter - ToolHub Pro</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/mCKjj3CG/toolweblogo-removebg-preview.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #4a6cf7;
-            --primary-dark: #3a57d4;
-            --secondary-color: #6c757d;
-            --light-color: #f8f9fa;
-            --dark-color: #212529;
-            --success-color: #28a745;
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #64748b;
+            --light-color: #0f172a;
+            --dark-color: #f8fafc;
+            --success-color: #10b981;
             --border-radius: 8px;
-            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             --transition: all 0.3s ease;
         }
 
@@ -28,8 +29,8 @@
         }
 
         body {
-            background-color: #f5f7ff;
-            color: var(--dark-color);
+            background-color: #0f172a;
+            color: #f8fafc;
             line-height: 1.6;
         }
 
@@ -41,12 +42,13 @@
         }
 
         header {
-            background-color: white;
+            background-color: #1e293b;
             box-shadow: var(--box-shadow);
             padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid #334155;
         }
 
         .header-content {
@@ -66,9 +68,21 @@
             color: var(--primary-color);
         }
 
-        .logo-icon {
-            font-size: 2rem;
-            color: var(--primary-color);
+        .logo-icon-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: var(--border-radius);
+        }
+
+        .tool-header-image {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
         }
 
         nav ul {
@@ -79,7 +93,7 @@
 
         nav a {
             text-decoration: none;
-            color: var(--dark-color);
+            color: #cbd5e1;
             font-weight: 500;
             transition: var(--transition);
         }
@@ -89,36 +103,37 @@
         }
 
         .hero {
-            padding: 60px 0;
+            padding: 80px 0;
             text-align: center;
-            background: linear-gradient(135deg, #f5f7ff 0%, #e6ebff 100%);
+            background: #0f172a;
         }
 
         .hero h2 {
             font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--dark-color);
+            margin-bottom: 20px;
+            color: #f8fafc;
         }
 
         .hero p {
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto 30px;
-            color: var(--secondary-color);
+            color: #cbd5e1;
         }
 
         .converter-tool {
-            background-color: white;
+            background-color: #1e293b;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
-            padding: 30px;
+            padding: 40px;
             margin-bottom: 40px;
+            border: 1px solid #334155;
         }
 
         .tool-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 40px;
         }
 
         .input-section {
@@ -135,34 +150,23 @@
 
         .input-group label {
             font-weight: 600;
-            color: var(--dark-color);
+            color: #f8fafc;
         }
 
         .input-field {
             padding: 12px 15px;
-            border: 1px solid #d1d5db;
+            background-color: #334155;
+            border: 1px solid #475569;
             border-radius: var(--border-radius);
             font-size: 1rem;
             transition: var(--transition);
+            color: #f8fafc;
         }
 
         .input-field:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
-        }
-
-        .currency-selector {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .currency-flag {
-            width: 24px;
-            height: 16px;
-            border-radius: 2px;
-            object-fit: cover;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
         .swap-btn {
@@ -213,7 +217,7 @@
         }
 
         .btn:disabled {
-            background-color: #6c757d;
+            background-color: #475569;
             cursor: not-allowed;
             transform: none;
         }
@@ -229,10 +233,11 @@
         .result-box {
             width: 100%;
             padding: 25px;
-            background-color: #f0f8ff;
+            background-color: #334155;
             border-radius: var(--border-radius);
             text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            border: 1px solid #475569;
         }
 
         .result-amount {
@@ -244,20 +249,20 @@
 
         .result-text {
             font-size: 1rem;
-            color: var(--secondary-color);
+            color: #cbd5e1;
         }
 
         .conversion-rate {
             margin-top: 15px;
             padding-top: 15px;
-            border-top: 1px dashed #d1d5db;
+            border-top: 1px dashed #64748b;
             font-size: 0.9rem;
-            color: var(--secondary-color);
+            color: #94a3b8;
         }
 
         .last-updated {
             font-size: 0.8rem;
-            color: var(--secondary-color);
+            color: #94a3b8;
             text-align: center;
             margin-top: 10px;
         }
@@ -266,7 +271,7 @@
             display: inline-block;
             width: 20px;
             height: 20px;
-            border: 3px solid #f3f3f3;
+            border: 3px solid #334155;
             border-top: 3px solid var(--primary-color);
             border-radius: 50%;
             animation: spin 1s linear infinite;
@@ -285,6 +290,7 @@
         .popular-currencies h3 {
             margin-bottom: 15px;
             text-align: center;
+            color: #f8fafc;
         }
 
         .currency-grid {
@@ -294,22 +300,24 @@
         }
 
         .currency-card {
-            background-color: #f8f9fa;
+            background-color: #334155;
             border-radius: var(--border-radius);
             padding: 15px 10px;
             text-align: center;
             cursor: pointer;
             transition: var(--transition);
+            border: 1px solid #475569;
         }
 
         .currency-card:hover {
-            background-color: #e9ecef;
+            background-color: #475569;
             transform: translateY(-2px);
         }
 
         .currency-card.active {
             background-color: var(--primary-color);
             color: white;
+            border-color: var(--primary-color);
         }
 
         .currency-symbol {
@@ -324,86 +332,77 @@
 
         .currency-name {
             font-size: 0.7rem;
-            color: var(--secondary-color);
+            color: #94a3b8;
         }
 
         .currency-card.active .currency-name {
             color: rgba(255, 255, 255, 0.8);
         }
 
+        .hidden {
+            display: none !important;
+        }
+
         .ad-container {
-            margin: 40px 0;
+            margin: 60px 0;
             text-align: center;
-            background-color: white;
+            background-color: #1e293b;
             border-radius: var(--border-radius);
             padding: 20px;
             box-shadow: var(--box-shadow);
+            border: 1px solid #334155;
         }
 
         .ad-label {
             font-size: 0.8rem;
-            color: var(--secondary-color);
+            color: #94a3b8;
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .ad-unit {
-            min-height: 250px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #f9fafb;
-            border: 1px dashed #d1d5db;
+            background-color: #334155;
+            border: 1px dashed #475569;
             border-radius: var(--border-radius);
             margin: 0 auto;
         }
 
         .ad-unit.horizontal {
-    width: 100%;
-    max-width: 728px;
-    height: 90px;
-    min-height: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f9fafb;
-    border: 1px dashed #d1d5db;
-    border-radius: var(--border-radius);
-    margin: 0 auto;
-}
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+        }
 
-.ad-unit.vertical {
-    width: 100%;
-    max-width: 468px;
-    height: 60px;
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f9fafb;
-    border: 1px dashed #d1d5db;
-    border-radius: var(--border-radius);
-    margin: 0 auto;
-}
+        .ad-unit.vertical {
+            width: 100%;
+            max-width: 468px;
+            height: 60px;
+        }
+
         .features {
-            padding: 60px 0;
-            background-color: white;
+            padding: 80px 0;
+            background-color: #1e293b;
+            border-top: 1px solid #334155;
+            border-bottom: 1px solid #334155;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .section-title h2 {
-            font-size: 2rem;
-            color: var(--dark-color);
+            font-size: 2.5rem;
+            color: #f8fafc;
             margin-bottom: 15px;
         }
 
         .section-title p {
-            color: var(--secondary-color);
+            color: #cbd5e1;
             max-width: 600px;
             margin: 0 auto;
         }
@@ -415,86 +414,61 @@
         }
 
         .feature-card {
-            background-color: #f8f9fa;
+            background-color: #334155;
             border-radius: var(--border-radius);
             padding: 30px;
             text-align: center;
             transition: var(--transition);
+            border: 1px solid #475569;
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--box-shadow);
+            border-color: var(--primary-color);
         }
 
         .feature-icon {
             font-size: 2.5rem;
-            color: var(--primary-color);
             margin-bottom: 20px;
         }
 
         .feature-card h3 {
             margin-bottom: 15px;
             font-size: 1.3rem;
+            color: #f8fafc;
         }
 
         .feature-card p {
-            color: var(--secondary-color);
+            color: #cbd5e1;
         }
 
         footer {
-            background-color: var(--dark-color);
+            background-color: #0f172a;
             color: white;
-            padding: 40px 0 20px;
+            padding: 60px 0 20px;
+            border-top: 1px solid #334155;
         }
 
         .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 30px;
+            text-align: center;
+            margin-bottom: 40px;
         }
 
         .footer-column h3 {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
+            color: #f8fafc;
         }
 
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--primary-color);
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-column a {
-            color: #adb5bd;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-column a:hover {
-            color: white;
+        .footer-column p {
+            color: #94a3b8;
         }
 
         .copyright {
             text-align: center;
             padding-top: 20px;
-            border-top: 1px solid #343a40;
-            color: #adb5bd;
+            border-top: 1px solid #334155;
+            color: #64748b;
             font-size: 0.9rem;
         }
 
@@ -506,10 +480,6 @@
             
             .hero h2 {
                 font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
             }
         }
 
@@ -526,6 +496,14 @@
             .currency-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -534,15 +512,11 @@
             }
             
             .hero {
-                padding: 40px 0;
-            }
-            
-            .hero h2 {
-                font-size: 1.8rem;
+                padding: 60px 0;
             }
             
             .features {
-                padding: 40px 0;
+                padding: 60px 0;
             }
             
             .currency-grid {
@@ -559,12 +533,20 @@
     <header>
         <div class="container">
             <div class="header-content">
-               <div class="logo">
-    <div class="logo-icon" style="display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #4a6cf7; border-radius: 12px;">
-        <img src="https://cdn-icons-png.flaticon.com/128/71/71123.png" alt="Currency Converter" style="width: 24px; height: 24px; filter: brightness(0) invert(1);">
-    </div>
-    <h1>Currency Converter</h1>
-</div>
+                <div class="logo">
+                    <div class="logo-icon-container">
+                        <img src="https://cdn-icons-png.flaticon.com/128/71/71123.png" alt="Currency Converter" class="tool-header-image">
+                    </div>
+                    <h1>Currency Converter</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#tools">Tools</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </header>
 
     <section class="hero">
@@ -602,11 +584,10 @@
                         
                         <button class="btn btn-full" id="convertBtn">
                             <span id="convertText">Convert Currency</span>
-                            <span id="convertLoading" class="loadin hidden"></span>
+                            <span id="convertLoading" class="loading hidden"></span>
                         </button>
                         
-                        
-                        </div>
+                    
                     </div>
                     
                     <div class="result-section">
@@ -620,25 +601,23 @@
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 
     <div class="container">
         <div class="ad-container">
             <div class="ad-label">Advertisement</div>
             <div class="ad-unit horizontal" id="ad-unit-1">
-                <!-- Google AdSense Ad Unit -->
-                <!-- Replace with your AdSense code -->
                 <script type="text/javascript">
-	atOptions = {
-		'key' : '7060e8c4ce2917eb18b919d0a99f0170',
-		'format' : 'iframe',
-		'height' : 90,
-		'width' : 728,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/7060e8c4ce2917eb18b919d0a99f0170/invoke.js">
-</script>
+                    atOptions = {
+                        'key' : '7060e8c4ce2917eb18b919d0a99f0170',
+                        'format' : 'iframe',
+                        'height' : 90,
+                        'width' : 728,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/7060e8c4ce2917eb18b919d0a99f0170/invoke.js"></script>
             </div>
         </div>
     </div>
@@ -682,18 +661,16 @@
         <div class="ad-container">
             <div class="ad-label">Advertisement</div>
             <div class="ad-unit vertical" id="ad-unit-2">
-                <!-- Google AdSense Ad Unit -->
-                <!-- Replace with your AdSense code -->
                 <script type="text/javascript">
-	atOptions = {
-		'key' : '6b6723f55d342e6ca46d075f95e6e57b',
-		'format' : 'iframe',
-		'height' : 60,
-		'width' : 468,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/6b6723f55d342e6ca46d075f95e6e57b/invoke.js"></script>
+                    atOptions = {
+                        'key' : '6b6723f55d342e6ca46d075f95e6e57b',
+                        'format' : 'iframe',
+                        'height' : 60,
+                        'width' : 468,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/6b6723f55d342e6ca46d075f95e6e57b/invoke.js"></script>
             </div>
         </div>
     </div>
@@ -702,16 +679,18 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Currency Converter</h3>
+                    <h3>Currency Converter - ToolHub Pro</h3>
                     <p>The ultimate solution for all your currency conversion needs with accurate, real-time exchange rates.</p>
                 </div>
+            </div>
             <div class="copyright">
-                <p>&copy; 2025 CurrencyConverter. All rights reserved.</p>
+                <p>&copy; 2025 ToolHub. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Your existing JavaScript code remains exactly the same
         document.addEventListener('DOMContentLoaded', function() {
             // DOM Elements
             const amountInput = document.getElementById('amount');
