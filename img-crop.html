@@ -5,18 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Free online image crop tool. Crop your images to any size or aspect ratio. Perfect for social media, websites, and profile pictures.">
     <meta name="keywords" content="image crop, crop photos, image editor, online crop tool, photo cropper">
-    <title>CropMaster Pro - Crop Your Images Online for Free</title>
+    <title>Image Cropper</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/mCKjj3CG/toolweblogo-removebg-preview.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #4a6cf7;
-            --primary-dark: #3a57d4;
-            --secondary-color: #6c757d;
-            --light-color: #f8f9fa;
-            --dark-color: #212529;
-            --success-color: #28a745;
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #64748b;
+            --light-color: #0f172a;
+            --dark-color: #f8fafc;
+            --success-color: #10b981;
             --border-radius: 8px;
-            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             --transition: all 0.3s ease;
         }
 
@@ -28,8 +30,8 @@
         }
 
         body {
-            background-color: #f5f7ff;
-            color: var(--dark-color);
+            background-color: #0f172a;
+            color: #f8fafc;
             line-height: 1.6;
         }
 
@@ -41,12 +43,13 @@
         }
 
         header {
-            background-color: white;
+            background-color: #1e293b;
             box-shadow: var(--box-shadow);
             padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid #334155;
         }
 
         .header-content {
@@ -66,9 +69,21 @@
             color: var(--primary-color);
         }
 
-        .logo-icon {
-            font-size: 2rem;
-            color: var(--primary-color);
+        .logo-icon-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: var(--border-radius);
+        }
+
+        .tool-header-image {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
         }
 
         nav ul {
@@ -79,7 +94,7 @@
 
         nav a {
             text-decoration: none;
-            color: var(--dark-color);
+            color: #cbd5e1;
             font-weight: 500;
             transition: var(--transition);
         }
@@ -89,62 +104,69 @@
         }
 
         .hero {
-            padding: 60px 0;
+            padding: 80px 0;
             text-align: center;
-            background: linear-gradient(135deg, #f5f7ff 0%, #e6ebff 100%);
+            background: #0f172a;
         }
 
         .hero h2 {
             font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--dark-color);
+            margin-bottom: 20px;
+            color: #f8fafc;
         }
 
         .hero p {
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto 30px;
-            color: var(--secondary-color);
+            color: #cbd5e1;
         }
 
         .crop-tool {
-            background-color: white;
+            background-color: #1e293b;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
-            padding: 30px;
+            padding: 40px;
             margin-bottom: 40px;
+            border: 1px solid #334155;
         }
 
         .tool-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 40px;
         }
 
         .upload-area {
-            border: 2px dashed #d1d5db;
+            border: 2px dashed #475569;
             border-radius: var(--border-radius);
             padding: 40px 20px;
             text-align: center;
             cursor: pointer;
             transition: var(--transition);
-            background-color: #f9fafb;
+            background-color: #334155;
         }
 
         .upload-area:hover {
             border-color: var(--primary-color);
-            background-color: #f0f4ff;
+            background-color: #475569;
         }
 
         .upload-icon {
             font-size: 3rem;
-            color: var(--secondary-color);
+            color: #94a3b8;
             margin-bottom: 15px;
         }
 
         .upload-area p {
             margin-bottom: 20px;
-            color: var(--secondary-color);
+            color: #cbd5e1;
+        }
+
+        .file-types {
+            color: #94a3b8 !important;
+            font-size: 0.9rem;
+            margin-top: 10px;
         }
 
         .btn {
@@ -181,6 +203,12 @@
             font-size: 0.9rem;
         }
 
+        .btn:disabled {
+            background-color: #475569;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .settings {
             margin: 25px 0;
         }
@@ -193,6 +221,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
+            color: #f8fafc;
         }
 
         .dimension-controls {
@@ -204,9 +233,16 @@
         .dimension-input {
             flex: 1;
             padding: 10px 15px;
-            border: 1px solid #d1d5db;
+            background-color: #334155;
+            border: 1px solid #475569;
             border-radius: var(--border-radius);
             font-size: 1rem;
+            color: #f8fafc;
+        }
+
+        .dimension-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
         }
 
         .aspect-ratio {
@@ -220,6 +256,11 @@
             margin-right: 5px;
         }
 
+        .aspect-ratio label {
+            color: #cbd5e1;
+            margin-bottom: 0;
+        }
+
         .preset-sizes {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -229,17 +270,18 @@
 
         .preset-btn {
             padding: 8px 5px;
-            background-color: #f1f5f9;
-            border: 1px solid #d1d5db;
+            background-color: #334155;
+            border: 1px solid #475569;
             border-radius: var(--border-radius);
             cursor: pointer;
             transition: var(--transition);
             font-size: 0.9rem;
             text-align: center;
+            color: #cbd5e1;
         }
 
         .preset-btn:hover {
-            background-color: #e2e8f0;
+            background-color: #475569;
         }
 
         .preset-btn.active {
@@ -254,6 +296,15 @@
             margin-top: 15px;
         }
 
+        select {
+            background-color: #334155;
+            border: 1px solid #475569;
+            color: #f8fafc;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            width: 100%;
+        }
+
         .preview-container {
             display: flex;
             flex-direction: column;
@@ -261,10 +312,11 @@
         }
 
         .preview-box {
-            border: 1px solid #e5e7eb;
+            border: 1px solid #475569;
             border-radius: var(--border-radius);
             padding: 15px;
             text-align: center;
+            background-color: #334155;
         }
 
         .preview-title {
@@ -273,6 +325,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            color: #f8fafc;
         }
 
         .preview-image {
@@ -287,20 +340,20 @@
             justify-content: space-between;
             margin-top: 10px;
             font-size: 0.9rem;
-            color: var(--secondary-color);
+            color: #94a3b8;
         }
 
         .dimension-info {
             font-size: 0.8rem;
-            color: var(--secondary-color);
+            color: #94a3b8;
             margin-top: 5px;
         }
 
         .crop-area {
             width: 100%;
             height: 400px;
-            background-color: #f9fafb;
-            border: 1px solid #e5e7eb;
+            background-color: #334155;
+            border: 1px solid #475569;
             border-radius: var(--border-radius);
             overflow: hidden;
             margin-bottom: 20px;
@@ -320,8 +373,9 @@
             display: none;
             margin-top: 20px;
             padding: 20px;
-            background-color: #f0f8ff;
+            background-color: #334155;
             border-radius: var(--border-radius);
+            border: 1px solid #475569;
         }
 
         .results.active {
@@ -338,9 +392,10 @@
         .result-item {
             text-align: center;
             padding: 15px;
-            background-color: white;
+            background-color: #1e293b;
             border-radius: var(--border-radius);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            border: 1px solid #475569;
         }
 
         .result-value {
@@ -352,7 +407,7 @@
 
         .result-label {
             font-size: 0.9rem;
-            color: var(--secondary-color);
+            color: #94a3b8;
         }
 
         .actions {
@@ -362,79 +417,65 @@
         }
 
         .ad-container {
-            margin: 40px 0;
+            margin: 60px 0;
             text-align: center;
-            background-color: white;
+            background-color: #1e293b;
             border-radius: var(--border-radius);
             padding: 20px;
             box-shadow: var(--box-shadow);
+            border: 1px solid #334155;
         }
 
         .ad-label {
             font-size: 0.8rem;
-            color: var(--secondary-color);
+            color: #94a3b8;
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .ad-unit {
-            min-height: 250px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #f9fafb;
-            border: 1px dashed #d1d5db;
+            background-color: #334155;
+            border: 1px dashed #475569;
             border-radius: var(--border-radius);
             margin: 0 auto;
         }
 
         .ad-unit.horizontal {
-    width: 100%;
-    max-width: 728px;
-    height: 90px;
-    min-height: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f9fafb;
-    border: 1px dashed #d1d5db;
-    border-radius: var(--border-radius);
-    margin: 0 auto;
-}
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+        }
 
-.ad-unit.vertical {
-    width: 100%;
-    max-width: 468px;
-    height: 60px;
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f9fafb;
-    border: 1px dashed #d1d5db;
-    border-radius: var(--border-radius);
-    margin: 0 auto;
-}
+        .ad-unit.vertical {
+            width: 100%;
+            max-width: 468px;
+            height: 60px;
+        }
 
         .features {
-            padding: 60px 0;
-            background-color: white;
+            padding: 80px 0;
+            background-color: #1e293b;
+            border-top: 1px solid #334155;
+            border-bottom: 1px solid #334155;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .section-title h2 {
-            font-size: 2rem;
-            color: var(--dark-color);
+            font-size: 2.5rem;
+            color: #f8fafc;
             margin-bottom: 15px;
         }
 
         .section-title p {
-            color: var(--secondary-color);
+            color: #cbd5e1;
             max-width: 600px;
             margin: 0 auto;
         }
@@ -446,87 +487,77 @@
         }
 
         .feature-card {
-            background-color: #f8f9fa;
+            background-color: #334155;
             border-radius: var(--border-radius);
             padding: 30px;
             text-align: center;
             transition: var(--transition);
+            border: 1px solid #475569;
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--box-shadow);
+            border-color: var(--primary-color);
         }
 
         .feature-icon {
             font-size: 2.5rem;
-            color: var(--primary-color);
             margin-bottom: 20px;
         }
 
         .feature-card h3 {
             margin-bottom: 15px;
             font-size: 1.3rem;
+            color: #f8fafc;
         }
 
         .feature-card p {
-            color: var(--secondary-color);
+            color: #cbd5e1;
         }
 
         footer {
-            background-color: var(--dark-color);
+            background-color: #0f172a;
             color: white;
-            padding: 40px 0 20px;
+            padding: 60px 0 20px;
+            border-top: 1px solid #334155;
         }
 
         .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 30px;
+            text-align: center;
+            margin-bottom: 40px;
         }
 
         .footer-column h3 {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
+            color: #f8fafc;
         }
 
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--primary-color);
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-column a {
-            color: #adb5bd;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-column a:hover {
-            color: white;
+        .footer-column p {
+            color: #94a3b8;
         }
 
         .copyright {
             text-align: center;
             padding-top: 20px;
-            border-top: 1px solid #343a40;
-            color: #adb5bd;
+            border-top: 1px solid #334155;
+            color: #64748b;
             font-size: 0.9rem;
+        }
+
+        /* Cropper.js dark theme adjustments */
+        .cropper-view-box,
+        .cropper-face {
+            border-color: var(--primary-color);
+        }
+
+        .cropper-line,
+        .cropper-point {
+            background-color: var(--primary-color);
+        }
+
+        .cropper-modal {
+            background-color: rgba(15, 23, 42, 0.8);
         }
 
         /* Responsive styles */
@@ -537,10 +568,6 @@
             
             .hero h2 {
                 font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
             }
             
             .preset-sizes {
@@ -578,6 +605,14 @@
             .crop-controls {
                 flex-wrap: wrap;
             }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -586,15 +621,11 @@
             }
             
             .hero {
-                padding: 40px 0;
-            }
-            
-            .hero h2 {
-                font-size: 1.8rem;
+                padding: 60px 0;
             }
             
             .features {
-                padding: 40px 0;
+                padding: 60px 0;
             }
             
             .preset-sizes {
@@ -612,12 +643,17 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-    <div class="logo-icon" style="display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #4a6cf7; border-radius: 12px;">
-        <img src="https://cdn-icons-png.flaticon.com/128/9314/9314215.png" alt="Image Cropper" style="width: 24px; height: 24px; filter: brightness(0) invert(1);">
-    </div>
-    <h1>Image Cropper</h1>
-</div>
-               
+                    <div class="logo-icon-container">
+                        <img src="https://cdn-icons-png.flaticon.com/128/9314/9314215.png" alt="Image Cropper" class="tool-header-image">
+                    </div>
+                    <h1>Image Cropper</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#tools">Tools</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </header>
@@ -695,7 +731,7 @@
                                     <span id="originalSize">--</span>
                                 </div>
                                 <div id="originalPreview" class="preview-container">
-                                    <p>No image selected</p>
+                                    <p style="color: #94a3b8;">No image selected</p>
                                 </div>
                                 <div id="originalDimensions" class="dimension-info">Dimensions: --</div>
                             </div>
@@ -706,7 +742,7 @@
                                     <span id="croppedSize">--</span>
                                 </div>
                                 <div id="croppedPreview" class="preview-container">
-                                    <p>Cropped image will appear here</p>
+                                    <p style="color: #94a3b8;">Cropped image will appear here</p>
                                 </div>
                                 <div id="croppedDimensions" class="dimension-info">Dimensions: --</div>
                             </div>
@@ -738,19 +774,16 @@
         <div class="ad-container">
             <div class="ad-label">Advertisement</div>
             <div class="ad-unit horizontal" id="ad-unit-1">
-                <!-- Google AdSense Ad Unit -->
-                <!-- Replace with your AdSense code -->
                 <script type="text/javascript">
-	atOptions = {
-		'key' : '7060e8c4ce2917eb18b919d0a99f0170',
-		'format' : 'iframe',
-		'height' : 90,
-		'width' : 728,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/7060e8c4ce2917eb18b919d0a99f0170/invoke.js">
-</script>
+                    atOptions = {
+                        'key' : '7060e8c4ce2917eb18b919d0a99f0170',
+                        'format' : 'iframe',
+                        'height' : 90,
+                        'width' : 728,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/7060e8c4ce2917eb18b919d0a99f0170/invoke.js"></script>
             </div>
         </div>
     </div>
@@ -794,18 +827,16 @@
         <div class="ad-container">
             <div class="ad-label">Advertisement</div>
             <div class="ad-unit vertical" id="ad-unit-2">
-                <!-- Google AdSense Ad Unit -->
-                <!-- Replace with your AdSense code -->
-               <script type="text/javascript">
-	atOptions = {
-		'key' : '6b6723f55d342e6ca46d075f95e6e57b',
-		'format' : 'iframe',
-		'height' : 60,
-		'width' : 468,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/6b6723f55d342e6ca46d075f95e6e57b/invoke.js"></script>
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : '6b6723f55d342e6ca46d075f95e6e57b',
+                        'format' : 'iframe',
+                        'height' : 60,
+                        'width' : 468,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/6b6723f55d342e6ca46d075f95e6e57b/invoke.js"></script>
             </div>
         </div>
     </div>
@@ -814,18 +845,19 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Crop Image</h3>
+                    <h3>Image Cropper</h3>
                     <p>The ultimate solution for cropping your images for web, social media, and print applications.</p>
                 </div>
-            
+            </div>
             <div class="copyright">
-                <p>&copy; 2025 CropImage. All rights reserved.</p>
+                <p>&copy; 2025 ToolHub. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
     <script>
+        // Your existing JavaScript code remains exactly the same
         document.addEventListener('DOMContentLoaded', function() {
             const fileInput = document.getElementById('fileInput');
             const browseBtn = document.getElementById('browseBtn');
@@ -873,18 +905,18 @@
             uploadArea.addEventListener('dragover', function(e) {
                 e.preventDefault();
                 this.style.borderColor = 'var(--primary-color)';
-                this.style.backgroundColor = '#f0f4ff';
+                this.style.backgroundColor = '#475569';
             });
             
             uploadArea.addEventListener('dragleave', function() {
-                this.style.borderColor = '#d1d5db';
-                this.style.backgroundColor = '#f9fafb';
+                this.style.borderColor = '#475569';
+                this.style.backgroundColor = '#334155';
             });
             
             uploadArea.addEventListener('drop', function(e) {
                 e.preventDefault();
-                this.style.borderColor = '#d1d5db';
-                this.style.backgroundColor = '#f9fafb';
+                this.style.borderColor = '#475569';
+                this.style.backgroundColor = '#334155';
                 
                 if (e.dataTransfer.files && e.dataTransfer.files[0]) {
                     handleFile(e.dataTransfer.files[0]);
@@ -1090,8 +1122,8 @@
             cropAnotherBtn.addEventListener('click', function() {
                 // Reset the tool
                 fileInput.value = '';
-                originalPreview.innerHTML = '<p>No image selected</p>';
-                croppedPreview.innerHTML = '<p>Cropped image will appear here</p>';
+                originalPreview.innerHTML = '<p style="color: #94a3b8;">No image selected</p>';
+                croppedPreview.innerHTML = '<p style="color: #94a3b8;">Cropped image will appear here</p>';
                 originalSize.textContent = '--';
                 croppedSize.textContent = '--';
                 originalDimensions.textContent = 'Dimensions: --';
