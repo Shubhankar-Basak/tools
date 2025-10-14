@@ -1085,7 +1085,7 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Tool data - UPDATED WITH IMAGES
+        // Tool data - UPDATED WITH COLOR PICKER
         const tools = [
             {
                 id: 'qr-code',
@@ -1119,6 +1119,17 @@
                 rating: '4.6',
                 featured: true,
                 file: 'age-calculator.html'
+            },
+            {
+                id: 'color-picker',
+                name: 'Color Picker',
+                description: 'Pick colors and convert between HEX, RGB, HSL formats with beautiful palettes.',
+                icon: '<img src="https://cdn-icons-png.flaticon.com/128/3245/3245667.png" alt="Color Picker" class="tool-image">',
+                tags: ['Color', 'Design', 'Picker'],
+                uses: '68K',
+                rating: '4.7',
+                featured: true,
+                file: 'color-picker.html'
             },
             {
                 id: 'image-compressor',
@@ -1158,19 +1169,8 @@
                 tags: ['Security', 'Generator', 'Free'],
                 uses: '89K',
                 rating: '4.7',
-       		    featured: true,
-       		    file: 'password-generator.html'
-             },
-			{
-                id: 'color-picker',
-                name: 'Color Picker',
-                description: 'Pick colors and convert between HEX, RGB, HSL formats with beautiful palettes.',
-                icon: '<img src="https://cdn-icons-png.flaticon.com/128/2869/2869671.png" alt="Color Picker" class="tool-image">',
-                tags: ['Color', 'Design', 'Picker'],
-                uses: '68K',
-                rating: '4.7',
                 featured: true,
-                file: 'color-picker.html'
+                file: 'password-generator.html'
             }
         ];
 
@@ -1179,6 +1179,9 @@
         const featuredSlider = document.getElementById('featuredSlider');
         const toolSearch = document.getElementById('toolSearch');
         const faqQuestions = document.querySelectorAll('.faq-question');
+
+        // Store all tool cards for search
+        let allToolCards = [];
 
         // Initialize the page
         function initPage() {
@@ -1190,6 +1193,7 @@
         // Render all tools
         function renderTools() {
             toolsGrid.innerHTML = '';
+            allToolCards = []; // Reset the array
             
             tools.forEach(tool => {
                 const toolCard = document.createElement('a');
@@ -1218,6 +1222,12 @@
                 `;
                 
                 toolsGrid.appendChild(toolCard);
+                allToolCards.push({
+                    element: toolCard,
+                    name: tool.name.toLowerCase(),
+                    description: tool.description.toLowerCase(),
+                    tags: tool.tags.map(tag => tag.toLowerCase())
+                });
             });
         }
 
@@ -1244,22 +1254,33 @@
             });
         }
 
+        // Search functionality
+        function performSearch(searchTerm) {
+            searchTerm = searchTerm.toLowerCase().trim();
+            
+            allToolCards.forEach(tool => {
+                const matchesName = tool.name.includes(searchTerm);
+                const matchesDesc = tool.description.includes(searchTerm);
+                const matchesTags = tool.tags.some(tag => tag.includes(searchTerm));
+                
+                if (searchTerm === '' || matchesName || matchesDesc || matchesTags) {
+                    tool.element.style.display = 'block';
+                } else {
+                    tool.element.style.display = 'none';
+                }
+            });
+        }
+
         // Setup event listeners
         function setupEventListeners() {
-            // Search functionality
+            // Search functionality - SIMPLIFIED AND FIXED
             toolSearch.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                
-                document.querySelectorAll('.tool-card').forEach(card => {
-                    const toolName = card.querySelector('h3').textContent.toLowerCase();
-                    const toolDesc = card.querySelector('p').textContent.toLowerCase();
-                    
-                    if (toolName.includes(searchTerm) || toolDesc.includes(searchTerm)) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+                performSearch(this.value);
+            });
+
+            // Also search on keyup for better responsiveness
+            toolSearch.addEventListener('keyup', function() {
+                performSearch(this.value);
             });
 
             // FAQ accordion
@@ -1290,6 +1311,11 @@
 
         // Initialize the page
         initPage();
+
+        // Debug: Check if elements exist
+        console.log('Tools Grid:', toolsGrid);
+        console.log('Search Input:', toolSearch);
+        console.log('Total tools:', tools.length);
     });
 </script>
 </body>
